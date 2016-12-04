@@ -258,10 +258,10 @@ for i, resource in pairs(data.raw["resource"]) do
     resourceData = resourceData .. "{ \"name\" : \"".. resource.name .."\""
     if resource.minable ~= nil then
         if resource.minable.hardness ~= nil then
-            resourceData = resourceData .. ", \"hardness\" : \"".. resource.minable.hardness.."\""
+            resourceData = resourceData .. ", \"hardness\" : ".. resource.minable.hardness..""
         end
         if resource.minable.mining_time ~= nil then
-            resourceData = resourceData .. ", \"miningTime\" : \"".. resource.minable.mining_time.."\""
+            resourceData = resourceData .. ", \"miningTime\" : ".. resource.minable.mining_time..""
         end
         if resource.minable.result ~= nil then
             resourceData = resourceData .. ", \"result\" : \"".. resource.minable.result.."\""
@@ -326,7 +326,7 @@ end
 
 dataString = dataString.. ",\"speed\" : " .. rs.crafting_speed .. ",\"energySource\" : \""..rs.energy_source.type.."\", \"energyUsage\" : \"" .. rs.energy_usage .. "\", \"module\" : ".. rs.module_specification.module_slots..""
 dataString = dataString .. ", \"fixedRecipe\" : \"".. rs.fixed_recipe .. "\", \"ingredientCount\" : " .. rs.ingredient_count .. ", \"partsRequired\" : " .. rs.rocket_parts_required .. "}"
---log(serpent.block(silo))
+--log(serpent.block(data.raw))
 dataString = dataString .. ", \"technologies\" : ["
 
 x = 0
@@ -369,7 +369,7 @@ for i, drill in pairs(data.raw["mining-drill"]) do
     end
     drilldata = drilldata .. "{ \"name\" : \"".. drill.name.. "\""
 	drilldata = drilldata .. ",\"power\" : ".. drill.mining_power
-	drilldata = drilldata .. ",\"speed\" : ".. drill.mining_power
+	drilldata = drilldata .. ",\"speed\" : ".. drill.mining_speed
 	drilldata = drilldata .. ",\"energyUsage\" : \"".. drill.energy_usage .. "\""
 	if drill.resource_categories ~= nil then
 		local y = 0
