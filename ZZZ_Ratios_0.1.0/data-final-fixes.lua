@@ -20,7 +20,6 @@ function pairs(t, ...)
     end
 end
 
-
 local x = 0
 for i , item in pairs(data.raw["assembling-machine"], data.raw["furnace"]) do
     local machineData 
@@ -358,6 +357,38 @@ for i, tech in pairs(data.raw["technology"]) do
     end 
     techData = techData .. "}"
     dataString = dataString .. techData
+    x = x+1
+end   
+dataString = dataString .. "], \"miningDrills\" : ["
+x = 0
+
+for i, drill in pairs(data.raw["mining-drill"]) do
+    local drilldata = ""
+    if x ~= 0 then
+        drilldata = ","
+    end
+    drilldata = drilldata .. "{ \"name\" : \"".. drill.name.. "\""
+	drilldata = drilldata .. ",\"power\" : ".. drill.mining_power
+	drilldata = drilldata .. ",\"speed\" : ".. drill.mining_power
+	drilldata = drilldata .. ",\"energyUsage\" : \"".. drill.energy_usage .. "\""
+	if drill.resource_categories ~= nil then
+		local y = 0
+		for j,cat in pairs(drill.resource_categories)do
+			if y == 0 then
+				drilldata = drilldata .. ",\"categories\" : ["
+			else
+				drilldata = drilldata .. ","
+			end
+				drilldata = drilldata .. "\"" ..  cat .. "\""
+			y = y+1
+		end
+		drilldata = drilldata .. "]"
+	end
+	if drill.module_specification ~= nil then
+		drilldata = drilldata .. ",\"modules\" : ".. drill.module_specification.module_slots .. ""
+	end
+    drilldata = drilldata .. "}"
+    dataString = dataString .. drilldata
     x = x+1
 end   
 
