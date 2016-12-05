@@ -167,13 +167,19 @@ for i, recipe in pairs(data.raw["recipe"]) do
             else 
                 recipeData = recipeData .. ",{"
             end
+			recipeData = recipeData .. "\"name\" : \"" .. res.name .. "\""
             if res.amount ~= nil then
-                recipeData = recipeData ..   "\"amount\" : " .. res.amount .. ", \"name\" : \"".. res.name .. "\", \"type\" : \"".. res.type.."\"}"
+                recipeData = recipeData ..   "\"amount\" : " .. res.amount
             elseif res.amount_max ~= nil then
-                recipeData = recipeData ..   "\"amountMax\" : " .. res.amount_max .. ",\"amountMin\" : " .. res.amount_min .. ", \"name\" : \"".. res.name .. "\", \"type\" : \"".. res.type.."\"}"
+                recipeData = recipeData ..   "\"amountMax\" : " .. res.amount_max .. ",\"amountMin\" : " .. res.amount_min .. ", \"name\" : \"".. res.name .. "\""
             else
-                recipeData = recipeData ..   "\"amount\" : " .. res[2] .. ", \"name\" : \"".. res[1] .. "\", \"type\" : \"item\"}"
+                recipeData = recipeData ..   "\"amount\" : " .. res[2] .. ", \"name\" : \"".. res[1] .. "\""
             end
+			if res.type ~= nil then
+				recipeData = recipeData .. ", \"type\" : \"".. res.type.."\"}"	
+			else
+				recipeData = recipeData .. ", \"type\" : \"item\"}"
+			end
             y = y +1 
         end
         recipeData = recipeData .. "]"
