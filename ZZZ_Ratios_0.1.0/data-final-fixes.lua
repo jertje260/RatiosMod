@@ -65,7 +65,9 @@ for i , item in pairs(data.raw["assembling-machine"], data.raw["furnace"]) do
         machineData = machineData .. ",\"fastReplaceGroup\": \""..item.fast_replaceable_group.."\""
     end
     if item.module_specification ~= nil then
-        machineData = machineData.. ",\"modules\": "..item.module_specification.module_slots .. ""
+		if item.module_specification.module_slots ~= nil then
+			machineData = machineData.. ",\"modules\": "..item.module_specification.module_slots .. ""
+		end
     end
     machineData = machineData.. "}"
     dataString = dataString ..machineData
