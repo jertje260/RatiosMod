@@ -154,10 +154,12 @@ for i, recipe in pairs(data.raw["recipe"]) do
     end
     recipeData = recipeData .. "]"
     if recipe.result ~= nil then
-        recipeData = recipeData .. ",\"result\" : \"".. recipe.result .."\""
+        recipeData = recipeData .. ",\"results\" : [{\"name\": \"".. recipe.result .."\""
         if recipe.result_count ~= nil then
-            recipeData = recipeData .. ",\"resultCount\" : " .. recipe.result_count
-        end
+            recipeData = recipeData .. ",\"amount\" : " .. recipe.result_count .."}]"
+        else
+			recipeData = recipeData .. ",\"amount\" : 1}]"
+		end
     elseif recipe.results ~= nil then
         y =0
         recipeData = recipeData .. ",\"results\" : ["
