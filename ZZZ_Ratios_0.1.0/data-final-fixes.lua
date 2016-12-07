@@ -144,7 +144,7 @@ for i, recipe in pairs(data.raw["recipe"]) do
         end
         if ing.type ~= nil then
             -- liquid
-            istring = istring .. "\"name\" : \"".. ing.name .. "\", \"amount\" : " .. ing.amount .. "\"type\" : \"".. ing.type.."\"}" 
+            istring = istring .. "\"name\" : \"".. ing.name .. "\", \"amount\" : " .. ing.amount .. ",\"type\" : \"".. ing.type.."\"}" 
         else
             -- item
             istring = istring .. "\"name\" : \"".. ing[1] .. "\", \"amount\" : " .. ing[2] .. ",  \"type\" : \"item\"}"
